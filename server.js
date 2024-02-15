@@ -4,7 +4,9 @@ const auth = require("json-server-auth");
 
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
+const middlewares = jsonServer.defaults();
 
+server.use(middlewares);
 server.use(jsonServer.bodyParser);
 server.db = router.db;
 
@@ -17,10 +19,10 @@ const rules = auth.rewriter({
 
 // 產品
 server.post("/api/admin/products/", (req, res, next) => {
-  const { name, price, category } = req.body;
+  const { title } = req.body;
 
   // 新增時檢查欄位
-  if (!name || !price || !category) {
+  if (!title ) {
     res.json({ success: false, message: "需輸入完整資訊" });
     return;
   }
