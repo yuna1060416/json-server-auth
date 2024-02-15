@@ -11,7 +11,7 @@ server.use(jsonServer.bodyParser);
 server.db = router.db;
 
 const rules = auth.rewriter({
-  users: 600,
+  users: 664,
   "/users/:email": "/users?email=:email",
   "/api/*": "/$1",
   "/products/all": "/products/",
